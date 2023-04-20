@@ -1,0 +1,112 @@
+# Most important settings:
+model_type: "rnn"
+target_name: "ICP_Vital"   # ICP_Vital" , long_icp_hypertension_2, 
+db_name: "UKE"  # "UKE", "MIMIC"
+minutes: 60
+model_size: "base" # "tiny", "small", "base", "large", "xl"
+
+outer_folds: 3
+inner_folds: 10
+
+only_med_and_demo_features: False
+use_general_features: False
+add_diagnosis_features: False
+use_general_features_diag: False
+use_general_features_sparse: False
+
+auto_lr_find: False
+# data args
+agg_meds: True
+norm_targets: True
+seed: 2
+#norm_method:  # z, or none
+features: 
+fill_type: "ffill" # "pat_mean", "median", "pat_ema" "pat_ema_mask", "ffill", "none"
+target_nan_quantile: 0.9999
+input_nan_quantile: 0.9999
+target_clip_quantile: 0.999
+input_clip_quantile: 0.999
+# do not tune
+#k_fold: 0
+#num_splits: 3
+random_starts: True
+
+randomly_mask_aug: 0.0
+tune_masking: False
+
+# nan embed
+use_nan_embed: False
+freeze_nan_embed: 0
+norm_nan_embed: 1
+nan_embed_size: 32
+use_nan_embed_transformer: 0 
+nan_embed_transformer_n_layers: 4
+nan_embed_transformer_n_heads: 4
+low_mem_mode: False
+
+subsample_frac: 1.0
+
+# augmentations
+train_noise_std: 0.01
+bs: 8 # 8 best for rnn
+max_len: 1024
+min_len: 0
+block_size: 8 #128
+
+
+max_epochs: 10
+# training/tuning args
+lr: #0.0001
+weight_decay: 0.2
+grad_clip_val: 1.0
+# do not change
+val_check_interval:  # check validation performance every N steps
+max_steps: -1
+use_macro_loss: False
+use_pos_weight: True
+use_huber: False
+# model args
+# rnn + mlp params
+dropout: 0.1
+hidden_size: 2048
+use_static: False
+# rnn params
+use_in_mapping: True
+use_out_mapping: True
+rnn_layers: 1
+rnn_type: "gru"
+use_lens: 1
+# transformer params
+num_transformer_blocks: 3
+n_heads: 8
+# gpt params
+mode: "adapters"  # "train_mlp_norm",  "train_norm", "freeze" (does not train)
+# clip params
+clip_name: "ViT-B/16"
+# gpt params
+gpt_name: "gpt2"  # gpt2, neo1.3, neo2.7     "gpt2",
+#    "gpt2-medium",
+#    "gpt2-large",
+#    "gpt2-xl",
+#    "distilgpt2",
+pretrained: 1
+reduction_factor: 16
+# classical model args
+flat_block_size: 8
+#linear
+alpha: 1
+l1_ratio: 0.5
+# xgb+rf
+n_estimators: 50
+max_depth: 6 
+min_child_weight: # 1-inf
+gamma: 0.0 # 0-inf
+subsample: 1.0 # 0.0-1.0
+colsample_bytree: 1.0 # 0.-1.0
+tree_method: "gpu_hist" # hist, gpu_hist
+
+gpu: 0
+opt_steps: 50
+tune_hebo: False
+flat_block_size_range: 0
+num_seeds: 1

@@ -1,0 +1,31 @@
+tensorflow # for adapter-transformers, for some reason it is imported there
+
+# Dev Dependencies
+captum>=0.2.0
+datashader>=0.11.0
+holoviews>=1.13.2
+matplotlib>=3.2.2
+wandb
+transformers
+adapter-transformers
+numpy>=1.18.2
+pandas>=1.0.4
+pytorch_lightning>=1.0.2
+scikit-learn>=0.23.1
+scipy>=1.4.1
+seaborn>=0.10.1
+torch >= 1.6.0
+torchvision>=0.6.1
+umap_learn>=0.4.3
+xgboost>=1.1.0
+xlrd>=1.2.0
+optuna>=2.0.0rc0
+plotly>=4.9.0
+mako>=1.1.0
+pillow>=7.0.0
+hydra-core==1.1.1
+# Test Dependencies
+coverage
+nose
+parameterized>=0.7.4
+pytest>=5.4.3
